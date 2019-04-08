@@ -14,7 +14,7 @@ class UserProfile extends Model
     const DIR_USER_PHOTO = self::DIR_USERS . '/photos';
     const USER_PHOTO_PATH = self::BASE_PATH . '/' . self::DIR_USER_PHOTO;
 
-    protected $fillable = ['photo, phone_number'];
+    protected $fillable = ['photo', 'phone_number'];
 
     /*
     public static function createTokenToChangePhoneNumber(UserProfile $profile, $phoneNumber){
@@ -36,7 +36,7 @@ class UserProfile extends Model
 
     public static function saveProfile(User $user, array $data): UserProfile
     {
-        if (array_key_exists('photo', $data['photo'])){
+        if (array_key_exists('photo', $data)){
             self::deletePhoto($user->profile);
             $data['photo'] = UserProfile::getPhotoHashName($data['photo']);
         }
@@ -52,7 +52,7 @@ class UserProfile extends Model
         return $photo ? $photo->hashName(): null;
     }
 
-    private static function deletePhoto(UserProfile $photo = null)
+    private static function deletePhoto(UserProfile $profile = null)
     {
         if (!$profile->photo){
             return;

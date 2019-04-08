@@ -19,7 +19,7 @@ export class UserProfileComponent implements OnInit {
         this.form = this.formBuilder.group({
             name: ['', [Validators.maxLength(255)]],
             email: ['', [Validators.email, Validators.maxLength(255)]],
-            password: ['', Validators.minLength(6), Validators.maxLength(16)],
+            password: ['', [Validators.minLength(6), Validators.maxLength(16)]],
             phone_number: null,
             photo: false
         });
